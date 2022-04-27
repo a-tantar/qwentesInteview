@@ -1,28 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Router, CanLoad } from '@angular/router';
+import { Router, CanLoad, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuardService implements CanLoad {
+export class AuthGuardService implements CanActivate {
   constructor(private _router: Router) {
   }
-
-  user: string | undefined
-
-
-  checkTokenExpiration() {
-    // checking whether your token has expired
+  user: any
+  canActivate(route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+    this.user = localStorage.getItem('token')
     if (this.user) {
-      this._router.navigate(['/lista-utenti'])
+      // alert('You are not allowed to view this page');
       return true;
-    } else {
-      return false
     }
-
-  }
-
-  canLoad() {
-    return this.checkTokenExpiration()
+    this._router.navigate(['/login'])
+    return false;
   }
 
 }

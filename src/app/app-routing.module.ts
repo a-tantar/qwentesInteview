@@ -10,28 +10,28 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: '**',
-    redirectTo: 'login'
-  },
-  {
     path: 'lista-utenti',
     loadChildren: () => import('./pages/lista-utenti/lista-utenti.module').then(m => m.ListaUtentiModule),
-    canLoad: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
-    path: 'dettaglio-utente',
+    path: 'dettaglio-utente/:id',
     loadChildren: () => import('./pages/dettaglio-utente/dettaglio-utente.module').then(m => m.DettaglioUtenteModule),
-    canLoad: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'post',
     loadChildren: () => import('./pages/post/post.module').then(m => m.PostModule),
-    canLoad: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
-    path: 'dettaglio-post',
+    path: 'dettaglio-post/:id',
     loadChildren: () => import('./pages/dettaglio-post/dettaglio-post.module').then(m => m.DettaglioPostModule),
-    canLoad: [AuthGuardService],
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
   },
 
 ];

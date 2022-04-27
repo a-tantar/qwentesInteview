@@ -1,1 +1,51 @@
-<p>login works!</p>
+<form [formGroup]="loginForm">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <mat-form-field appearance="fill" class="xl">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+          <mat-error
+            *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.controls['email'].hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <mat-form-field appearance="fill" class="xl">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput [minlength]="4" formControlName="password">
+          <mat-error
+            *ngIf="loginForm.controls['password'].hasError('password') && !loginForm.controls['password'].hasError('required')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+
+
+
+
+  <div class="spacer"></div>
+  <div fxLayout="row" fxLayoutAlign="center">
+
+    <button type="submit" [disabled]="loginForm.invalid" mat-button class="bg-blue0 c-white"
+      (click)="login()">Invia</button>
+  </div>
+</form>

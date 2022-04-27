@@ -1,1 +1,36 @@
-<p>lista-utenti works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div *ngFor="let user of listaUtenti">
+        <mat-card>
+
+          <div class="row">
+            <div class="col-1">
+              <span class="badge rounded-pill bg-success">{{user.iniziali}}</span>
+
+              <button type="button" (click)="dettaglioUtente(user.id)">Vai al dettaglio dell'utente</button>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+
+              {{user.name}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+
+              {{user.street}} , {{user.city}}
+            </div>
+          </div>
+
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+
+<!-- {{listaUtenti}} -->

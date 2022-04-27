@@ -1,1 +1,92 @@
-<p>dettaglio-utente works!</p>
+<div *ngIf="dettaglioUtente" class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+
+      <mat-card>
+
+        <div class="row">
+          <div class="col-1">
+            <span class="badge rounded-pill bg-success">{{dettaglioUtente.iniziali}}</span>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+
+            {{dettaglioUtente.name}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+
+            <form [formGroup]="dettaglioUtenteForm">
+
+              <!-- Name -->
+              <mat-form-field appearance="fill" class="xl">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name">
+                <mat-error *ngIf="dettaglioUtenteForm.controls['name'].hasError('required')">
+                  Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- EMAIL -->
+              <mat-form-field appearance="fill" class="xl">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-error
+                  *ngIf="dettaglioUtenteForm.controls['email'].hasError('email') && !dettaglioUtenteForm.controls['email'].hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="dettaglioUtenteForm.controls['email'].hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- COMPANY NAME -->
+              <mat-form-field appearance="fill" class="xl">
+                <mat-label>Company Name</mat-label>
+                <input type="text" matInput formControlName="companyName">
+                <mat-error *ngIf="dettaglioUtenteForm.controls['companyName'].hasError('required')">
+                  Company Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+
+
+            </form>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <button type="submit" [disabled]="dettaglioUtenteForm.invalid" mat-button class="bg-blue0 c-white"
+              (click)="send()">Save</button>
+          </div>
+        </div>
+
+      </mat-card>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row mt-5" *ngIf="posts">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <mat-card class="mb-3" *ngFor="let post of posts">
+        <div class="row">
+          <div class="col">
+            <h3 (click)="dettaglioPost(post.id)" class="fw-bold">{{post.title}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {{post.body}}
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
