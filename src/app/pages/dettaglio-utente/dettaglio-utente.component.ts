@@ -81,7 +81,7 @@ export class DettaglioUtenteComponent implements OnInit {
   }
 
   dettaglioPost(id: number) {
-    this.router.navigate(['/dettaglio-post/' + id])
+    this.router.navigate(['user/' + this.utente + '/dettaglio-post/' + id])
   }
 
 

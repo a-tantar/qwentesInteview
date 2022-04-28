@@ -1,1 +1,29 @@
-<p>post works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+
+            <h3>Post</h3>
+
+            <mat-card *ngFor="let post of listaPost" class="mt-2 ">
+
+                <div class="row">
+                    <div class="col">
+                        <h4 class="fw-bold" (click)="dettaglioPost(post.id)">{{post.title }}</h4>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>{{post.body}}</p>
+
+                    </div>
+                </div>
+
+
+            </mat-card>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

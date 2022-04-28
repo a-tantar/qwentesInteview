@@ -30,6 +30,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
+    path: 'user/:idUtente/dettaglio-post/:id',
+    loadChildren: () => import('./pages/dettaglio-post/dettaglio-post.module').then(m => m.DettaglioPostModule),
+    canActivate: [AuthGuardService],
+  },
+  {
     path: '**',
     redirectTo: 'login'
   },

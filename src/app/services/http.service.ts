@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ListaCommenti } from '../model/listaCommenti.model';
+import { ListaPost } from '../model/listaPost.model';
 import { ListaUtenti } from '../model/listaUtenti.model';
 import { Post } from '../model/post.model';
 import { Utente } from '../model/utente.model';
@@ -35,6 +37,14 @@ export class HttpService {
 
   getDettaglioPost(idPost: string): Observable<Post> {
     return this.httpService.get<Post>(`https://jsonplaceholder.typicode.com/posts/${idPost}`);
+  }
+
+  getListaCommenti(idPost: string): Observable<ListaCommenti> {
+    return this.httpService.get<ListaCommenti>(`https://jsonplaceholder.typicode.com/comments?postId=${idPost}`);
+  }
+
+  getListaPost(): Observable<ListaPost> {
+    return this.httpService.get<ListaPost>(`https://jsonplaceholder.typicode.com/posts`);
   }
 
 }
